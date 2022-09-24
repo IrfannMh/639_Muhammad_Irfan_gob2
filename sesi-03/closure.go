@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strings"
 )
 
 //declare closure variable
@@ -23,46 +24,46 @@ import (
 // }
 
 // closure IIFE
-func main() {
-	var isPalindrome = func(str string) bool {
-		var temp string = ""
+// func main() {
+// 	var isPalindrome = func(str string) bool {
+// 		var temp string = ""
 
-		for i := len(str) - 1; i >= 0; i-- {
-			temp += string(byte(str[i]))
-		}
+// 		for i := len(str) - 1; i >= 0; i-- {
+// 			temp += string(byte(str[i]))
+// 		}
 
-		return temp == str
-	}("katak")
-	fmt.Println(isPalindrome)
-}
+// 		return temp == str
+// 	}("katak")
+// 	fmt.Println(isPalindrome)
+// }
 
 // closure as a return value
-// func main() {
-// 	var studentLists = []string{"Airell", "Nanda", "Mailo", "Schannel", "Marco"}
+func main() {
+	var studentLists = []string{"Airell", "Nanda", "Mailo", "Schannel", "Marco"}
 
-// 	var find = findStudent(studentLists)
+	var find = findStudent(studentLists)
 
-// 	fmt.Println(find("Airell"))
-// }
+	fmt.Println(find("Haiqal"))
+}
 
-// func findStudent(students []string) func(string) string {
-// 	return func(s string) string {
-// 		var student string
-// 		var position int
+func findStudent(students []string) func(string) string {
+	return func(s string) string {
+		var student string
+		var position int
 
-// 		for i, v := range students {
-// 			if strings.ToLower(v) == strings.ToLower(s) {
-// 				student = v
-// 				position = i
-// 				break
-// 			}
-// 		}
-// 		if student == "" {
-// 			return fmt.Sprintf("%s doesn't exist!!!", s)
-// 		}
-// 		return fmt.Sprintf("We found %s at position %d", s, position+1)
-// 	}
-// }
+		for i, v := range students {
+			if strings.ToLower(v) == strings.ToLower(s) {
+				student = v
+				position = i
+				break
+			}
+		}
+		if student == "" {
+			return fmt.Sprintf("%s doesn't exist!!!", s)
+		}
+		return fmt.Sprintf("We found %s at position %d", s, position+1)
+	}
+}
 
 // closure callback
 // func main() {

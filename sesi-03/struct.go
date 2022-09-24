@@ -35,6 +35,8 @@ func main() {
 	fmt.Println(employee.age)
 	fmt.Println(employee.division)
 
+	fmt.Println(strings.Repeat("#", 30))
+
 	// Initializing struct
 	var employee1 = Employee{}
 	employee.name = "Airell"
@@ -45,6 +47,8 @@ func main() {
 
 	fmt.Printf("Employee1: %+v\n", employee1)
 	fmt.Printf("Employee2: %+v\n", employee2)
+
+	fmt.Println(strings.Repeat("#", 30))
 
 	// Pointer to a struct
 	var employee3 *Employee = &employee1
@@ -58,6 +62,8 @@ func main() {
 
 	fmt.Println("Employee1 name:", employee1.name)
 	fmt.Println("Employee3 name:", employee3.name)
+
+	fmt.Println(strings.Repeat("#", 30))
 
 	// Embedded struct
 	var employee4 = Employee1{}
