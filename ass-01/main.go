@@ -24,7 +24,7 @@ func main() {
 
 func ShowStudent(list []Student, id string) {
 	for i := range list {
-		//mencari data berdasarkan id
+		//mencari data berdasarkan
 		if list[i].Id == id {
 			fmt.Printf("Nama\t\t: %s \nPekerjaan\t: %s\nAlamat\t\t: %s\nAlasan\t\t: %s\n", list[i].Nama, list[i].Pekerjaan, list[i].Alamat, list[i].Alasan)
 		}
