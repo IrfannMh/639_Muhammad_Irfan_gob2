@@ -1,16 +1,15 @@
 package main
 
 import (
-	"practice/controller"
-
 	"practice/config"
+	"practice/controllers"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
 	db := config.DBInit()
-	inDB := &controller.InDB{DB: db}
+	inDB := &controllers.InDB{DB: db}
 
 	router := gin.Default()
 

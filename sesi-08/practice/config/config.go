@@ -1,19 +1,17 @@
 package config
 
 import (
-	"practice/struct"
+	"practice/structs"
 
-	"gorm.io/driver/postgres"
-	"gorm.io/gorm"
+	"github.com/jinzhu/gorm"
 )
 
 func DBInit() *gorm.DB {
-	dsn := "host=localhost user=gorm password=gorm dbname=gorm port=9920 sslmode=disable"
-	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	db, err := gorm.Open("mysql", "root:@tcp(127.0.0.1:3306)/godb?charset=utf8&parseTime=True&loc=Local")
 	if err != nil {
 		panic("failed to connect to database")
 	}
 
-	db.AutoMigrate(struct.Person{})
+	db.AutoMigrate(structs.Person{})
 	return db
 }

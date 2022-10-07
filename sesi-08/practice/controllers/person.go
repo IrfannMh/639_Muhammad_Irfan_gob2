@@ -7,12 +7,12 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// to get one data with {id}
 func (idb *InDB) GetPerson(c *gin.Context) {
 	var (
 		person structs.Person
 		result gin.H
 	)
-
 	id := c.Param("id")
 	err := idb.DB.Where("id = ?", id).First(&person).Error
 	if err != nil {
@@ -23,14 +23,14 @@ func (idb *InDB) GetPerson(c *gin.Context) {
 	} else {
 		result = gin.H{
 			"result": person,
-			"count":  1,
+			"count":  len(id),
 		}
 	}
 
 	c.JSON(http.StatusOK, result)
-
 }
 
+// to get all data in person
 func (idb *InDB) GetPersons(c *gin.Context) {
 	var (
 		persons []structs.Person
@@ -51,9 +51,9 @@ func (idb *InDB) GetPersons(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, result)
-
 }
 
+// Create new data to the database
 func (idb *InDB) CreatePerson(c *gin.Context) {
 	var (
 		person structs.Person
@@ -70,6 +70,7 @@ func (idb *InDB) CreatePerson(c *gin.Context) {
 	c.JSON(http.StatusOK, result)
 }
 
+// update data with {id} as query
 func (idb *InDB) UpdatePerson(c *gin.Context) {
 	id := c.Query("id")
 	first_name := c.PostForm("first_name")
@@ -86,26 +87,29 @@ func (idb *InDB) UpdatePerson(c *gin.Context) {
 			"result": "data not found",
 		}
 	}
+
 	newPerson.First_Name = first_name
 	newPerson.Last_Name = last_name
 	err = idb.DB.Model(&person).Updates(newPerson).Error
 	if err != nil {
 		result = gin.H{
-			"result": "update failed",
+			"result": "Update Failed",
 		}
 	} else {
 		result = gin.H{
 			"result": "successfully updated data",
+			"data":   person,
 		}
 	}
+
 	c.JSON(http.StatusOK, result)
 }
 
+// delete data with {id}
 func (idb *InDB) DeletePerson(c *gin.Context) {
 	var (
-		person    structs.Person
-		newPerson structs.Person
-		result    gin.H
+		person structs.Person
+		result gin.H
 	)
 	id := c.Param("id")
 	err := idb.DB.First(&person, id).Error
@@ -114,15 +118,18 @@ func (idb *InDB) DeletePerson(c *gin.Context) {
 			"result": "data not found",
 		}
 	}
-	err = idb.DB.Model(&person).Updates(newPerson).Error
+
+	err = idb.DB.Delete(&person).Error
 	if err != nil {
 		result = gin.H{
-			"result": "delete failed",
+			"result": "Delete Failed",
 		}
 	} else {
 		result = gin.H{
 			"result": "data deleted successfully",
+			"data":   person,
 		}
 	}
+
 	c.JSON(http.StatusOK, result)
 }

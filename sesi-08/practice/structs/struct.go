@@ -1,6 +1,6 @@
 package structs
 
-import "gorm.io/gorm"
+import "github.com/jinzhu/gorm"
 
 type Person struct {
 	gorm.Model
