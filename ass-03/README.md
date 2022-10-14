@@ -8,6 +8,7 @@ Membuat microservice weather
 - create database mysql dengan nama "db_weather"
 - buka terminal
 - ketikkan "go run main.go"
+- jalankan file index.html di folder fe
 
 ## package yang digunakan
 
