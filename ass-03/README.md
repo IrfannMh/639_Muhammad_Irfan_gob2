@@ -5,8 +5,9 @@ Membuat microservice weather
 ## cara menjalankan
 
 - clone github ass-03
-- create database mysql dengan nama "db_weather"
+- create database postgre dengan nama "db_weather"
 - buka terminal
+- pindah direktori ke folder be
 - ketikkan "go run main.go"
 - jalankan file index.html di folder fe
 
