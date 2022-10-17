@@ -89,6 +89,7 @@ func UpdateUser(c *gin.Context) {
 	userData := c.MustGet("userData").(jwt.MapClaims)
 	contentType := helpers.GetContentType(c)
 	User := models.User{}
+	UserUpdate := models.User{}
 	userID := uint(userData["id"].(float64))
 
 	if contentType == appJSON {
@@ -97,7 +98,7 @@ func UpdateUser(c *gin.Context) {
 		c.ShouldBind(&User)
 	}
 
-	err := db.Model(&User).Where("id = ?", userID).Updates(models.User{Email: User.Email, Username: User.Username}).Error
+	err := db.Model(&User).Where("id = ?", userID).Updates(&User).Error
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
@@ -107,33 +108,33 @@ func UpdateUser(c *gin.Context) {
 		return
 	}
 
+	db.Where("id = ?", userID).First(&UserUpdate)
+
 	c.JSON(http.StatusOK, gin.H{
-		// "message": userData,
 		"id":         userID,
-		"email":      User.Email,
-		"username":   User.Username,
-		"age":        User.Age,
-		"updated_at": User.UpdatedAt,
-		// "data":       User,
+		"email":      UserUpdate.Email,
+		"username":   UserUpdate.Username,
+		"age":        UserUpdate.Age,
+		"updated_at": UserUpdate.UpdatedAt,
 	})
 }
 
-// func DeleteUser(c *gin.Context) {
-// 	db := config.GetDB()
-// 	userData := c.MustGet("userData").(jwt.MapClaims)
-// 	User := models.User{}
-// 	userID := uint(userData["id"].(float64))
+func DeleteUser(c *gin.Context) {
+	db := config.GetDB()
+	userData := c.MustGet("userData").(jwt.MapClaims)
+	User := models.User{}
+	userID := uint(userData["id"].(float64))
 
-// 	err := db.Where("id = ?", userID).Delete(&User).Error
-// 	if err != nil {
-// 		c.JSON(http.StatusInternalServerError, gin.H{
-// 			"Status":  "Failed",
-// 			"Message": err.Error(),
-// 		})
-// 		return
-// 	}
+	err := db.Where("id = ?", userID).Delete(&User).Error
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"Status":  "Failed",
+			"Message": err.Error(),
+		})
+		return
+	}
 
-// 	c.JSON(http.StatusOK, gin.H{
-// 		"message": "Your account has been succesfully deleted",
-// 	})
-// }
+	c.JSON(http.StatusOK, gin.H{
+		"message": "Your account has been succesfully deleted",
+	})
+}
