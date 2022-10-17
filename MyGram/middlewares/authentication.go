@@ -1,9 +1,9 @@
 package middlewares
 
 import (
-	"JWT/database"
-	"JWT/helpers"
-	"JWT/models"
+	"MyGram/config"
+	"MyGram/helpers"
+	"MyGram/models"
 	"net/http"
 	"strconv"
 
@@ -28,23 +28,18 @@ func Authentication() gin.HandlerFunc {
 	}
 }
 
-func ProductAuthorization() gin.HandlerFunc {
+func UserAuthorization() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		db := database.GetDB()
-		productId, err := strconv.Atoi(c.Param("productId"))
-		if err != nil {
-			c.AbortWithStatusJSON(http.StatusBadGateway, gin.H{
-				"error":    "Bad Request",
-				"messsage": "Invalid Parameter",
-			})
-			return
-		}
+		db := config.GetDB()
 		userData := c.MustGet("userData").(jwt.MapClaims)
 		UserID := uint(userData["id"].(float64))
-		Product := models.Product{}
+		// UserEmail := userData["email"]
+		// idParam := c.Param("userID")
+		userIdParam, _ := strconv.ParseUint(c.Param("userID"), 10, 64)
+		id := uint(userIdParam)
+		User := models.User{}
 
-		err = db.Select("user_id").First(&Product, uint(productId)).Error
-
+		err := db.Where("id = ?", UserID).First(&User).Error
 		if err != nil {
 			c.AbortWithStatusJSON(http.StatusNotFound, gin.H{
 				"error":   "Data Not Found",
@@ -52,8 +47,7 @@ func ProductAuthorization() gin.HandlerFunc {
 			})
 			return
 		}
-
-		if Product.UserID != UserID {
+		if User.ID != id {
 			c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{
 				"error":   "Unauthorized",
 				"message": "You are not allowed to access this data",

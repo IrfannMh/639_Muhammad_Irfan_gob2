@@ -1,11 +1,11 @@
-# Assignment 3
+# Final Project Digitalent
 
-Membuat microservice weather
+Membuat aplikasi MyGram, yang bisa menginput foto dan memberikan komen ke foto orang lain
 
 ## cara menjalankan
 
-- clone github ass-03
-- create database postgre dengan nama "db_weather"
+- clone github MyGram
+- create database postgre dengan nama "MyGram"
 - buka terminal
 - pindah direktori ke folder be
 - ketikkan "go run main.go"

@@ -4,15 +4,12 @@ import (
 	"JWT/database"
 	"JWT/helpers"
 	"JWT/models"
-	"digitalent/639_Muhammad_Irfan_gob2/sesi-10/JWT/models"
 	"net/http"
 	"strconv"
 
-	"github.com/gin-gonic/gin"
-)
+	"github.com/dgrijalva/jwt-go"
 
-var (
-	appJSON = "application/json"
+	"github.com/gin-gonic/gin"
 )
 
 func CreateProduct(c *gin.Context) {
