@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func main(){
+func main() {
 	var person map[string]string //deklarasi
 
 	person = map[string]string{} //inisialisasi
@@ -16,22 +16,20 @@ func main(){
 	fmt.Println("name: ", person["name"])
 	fmt.Println("age: ", person["age"])
 	fmt.Println("address: ", person["address"])
-	
 
 	//cara ke2
 	var person1 = map[string]string{
-		"name":	"Airell",
-		"age":	"23",
-		"address":	"Jl Mangga"
+		"name":    "Airell",
+		"age":     "23",
+		"address": "Jl Mangga",
 	}
 
 	fmt.Println("name:", person1["name"])
 	fmt.Println("age:", person1["age"])
 	fmt.Println("address:", person1["address"])
 
-
 	//looping with map
-	for key,value := range person1{
+	for key, value := range person1 {
 		fmt.Println(key, ":", value)
 	}
 
@@ -45,14 +43,14 @@ func main(){
 	//detecting value
 	value, exist := person["age"]
 
-	if exist{
+	if exist {
 		fmt.Println(value)
 	} else {
 		fmt.Println("Value doesn't exist")
 	}
 
-	delete(person, "age")
-	value, exist := person["age"]
+	// delete(person, "age")
+	// value, exist := person["age"]
 
 	if exist {
 		fmt.Println(value)
@@ -60,16 +58,15 @@ func main(){
 		fmt.Println("Value has been deleted")
 	}
 
-
 	//combining slice and map
 
 	var people = []map[string]string{
-		{"name":"Airell", "age":"23"},
-		{"name":"Nanda", "age":"23"},
-		{"name":"Mailo", "age":"15"},
+		{"name": "Airell", "age": "23"},
+		{"name": "Nanda", "age": "23"},
+		{"name": "Mailo", "age": "15"},
 	}
 
-	for i, person := range people{
-		fmt.Printf("Index: %d, name: %s, age: %s", i, person["name"],person["age"])
+	for i, person := range people {
+		fmt.Printf("Index: %d, name: %s, age: %s", i, person["name"], person["age"])
 	}
 }

@@ -5,10 +5,27 @@ import (
 	"MyGram/helpers"
 	"MyGram/models"
 	"net/http"
+	"time"
 
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 )
+
+type PhotoGet struct {
+	ID        uint      `json:"id"`
+	Title     string    `json:"title"`
+	Caption   string    `json:"caption"`
+	PhotoURL  string    `json:"photo_url"`
+	UserID    uint      `json:"user_id`
+	CreatedAt time.Time `json:"created_at"`
+	UpdatedAt time.Time `json:"updated_at"`
+	User      UserPhoto
+}
+
+type UserPhoto struct {
+	Email    string `json:"email"`
+	Username string `json:"username"`
+}
 
 func CreatePhoto(c *gin.Context) {
 	db := config.GetDB()
@@ -50,8 +67,6 @@ func UpdatePhoto(c *gin.Context) {
 	Photo := models.Photo{}
 	photoId := c.Param("photoId")
 	PhotoUpdate := models.Photo{}
-	// userData := c.MustGet("userData").(jwt.MapClaims)
-	// userID := uint(userData["id"].(float64))
 
 	if contentType == appJSON {
 		c.ShouldBindJSON(&Photo)
@@ -84,8 +99,9 @@ func UpdatePhoto(c *gin.Context) {
 func GetPhoto(c *gin.Context) {
 	db := config.GetDB()
 	Photos := []models.Photo{}
+	responses := []PhotoGet{}
 
-	err := db.Preload("Users").Find(&Photos).Error
+	err := db.Preload("User").Find(&Photos).Error
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"Status":  "Failed",
@@ -93,8 +109,23 @@ func GetPhoto(c *gin.Context) {
 		})
 		return
 	}
-
-	c.JSON(http.StatusOK, Photos)
+	for i := 0; i < len(Photos); i++ {
+		temp := PhotoGet{
+			ID:        Photos[i].ID,
+			Title:     Photos[i].Title,
+			Caption:   Photos[i].Caption,
+			PhotoURL:  Photos[i].PhotoURL,
+			UserID:    Photos[i].UserID,
+			CreatedAt: Photos[i].CreatedAt,
+			UpdatedAt: Photos[i].UpdatedAt,
+			User: UserPhoto{
+				Email:    Photos[i].User.Email,
+				Username: Photos[i].User.Username,
+			},
+		}
+		responses = append(responses, temp)
+	}
+	c.JSON(http.StatusOK, responses)
 }
 
 func DeletePhoto(c *gin.Context) {

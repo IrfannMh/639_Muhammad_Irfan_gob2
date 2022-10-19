@@ -14,8 +14,8 @@ type User struct {
 	Password    string `gorm:"not null" json:"password"form:"password" valid:"required"`
 	Age         int    `gorm:"not null" json:"age" form:"age" valid:"required"`
 	SocialMedia SocialMedia
-	Photo       []Photo
-	Comment     []Comment
+	Photos      []Photo
+	Comments    []Comment
 }
 
 func (u *User) BeforeCreate(tx *gorm.DB) (err error) {

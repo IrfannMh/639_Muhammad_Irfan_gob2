@@ -5,10 +5,26 @@ import (
 	"MyGram/helpers"
 	"MyGram/models"
 	"net/http"
+	"time"
 
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 )
+
+type SocialMediaGet struct {
+	ID             uint      `json:"id"`
+	Name           string    `json:"name" form:"name"`
+	SocialMediaURL string    `json:"social_media_url"`
+	UserID         uint      `json:"user_id`
+	CreatedAt      time.Time `json:"created_at"`
+	UpdatedAt      time.Time `json:"updated_at"`
+	User           UserSosmed
+}
+
+type UserSosmed struct {
+	ID       uint   `json:"id"`
+	Username string `json:"username"`
+}
 
 func CreateSosmed(c *gin.Context) {
 	db := config.GetDB()
@@ -44,9 +60,10 @@ func CreateSosmed(c *gin.Context) {
 }
 func GetSosmed(c *gin.Context) {
 	db := config.GetDB()
-	Sosmeds := []models.SocialMedia{}
+	Users := []models.User{}
+	responses := []SocialMediaGet{}
 
-	err := db.Preload("Users").Find(&Sosmeds).Error
+	err := db.Preload("SocialMedia").Find(&Users).Error
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"Status":  "Failed",
@@ -55,7 +72,23 @@ func GetSosmed(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, Sosmeds)
+	for i := 0; i < len(Users); i++ {
+		temp := SocialMediaGet{
+			ID:             Users[i].SocialMedia.ID,
+			Name:           Users[i].SocialMedia.Name,
+			SocialMediaURL: Users[i].SocialMedia.SocialMediaURL,
+			UserID:         Users[i].SocialMedia.UserID,
+			CreatedAt:      Users[i].SocialMedia.CreatedAt,
+			UpdatedAt:      Users[i].SocialMedia.UpdatedAt,
+			User: UserSosmed{
+				ID:       Users[i].ID,
+				Username: Users[i].Username,
+			},
+		}
+		responses = append(responses, temp)
+	}
+
+	c.JSON(http.StatusOK, responses)
 }
 func UpdateSosmed(c *gin.Context) {
 	db := config.GetDB()
