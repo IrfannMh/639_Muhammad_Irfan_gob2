@@ -1,0 +1,611 @@
+{
+	"info": {
+		"_postman_id": "4e3cfa1c-5ecc-4089-b9d0-32437ccda9a2",
+		"name": "MyGram",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "UserTest1",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "user1@gmail..com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12345678",
+							"type": "text"
+						},
+						{
+							"key": "age",
+							"value": "24",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/users/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "user1@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12345678",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/users/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update user",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXI4QGdtYWlsLmNvbSIsImlkIjo4fQ.3BAs014aeer3Ba9DR0x7na_DzJSEZfCwR5YXB2ygg3w",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "user4@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "UserEmpat",
+							"type": "text"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/users/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete user",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIzQGdtYWlsLmNvbSIsImlkIjozfQ.zrsLJbM_zUPaySyuGnjYX2LpORuKQYVIk8QoBLQhFz0",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/users/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get photo",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIyQGdtYWlsLmNvbSIsImlkIjo2fQ.lQOUameI71Ka2sNMV73cDQoQmDIJiP5T8FLWYRIeZt4",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/photos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"photos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Photo",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIwQGdtYWlsLmNvbSIsImlkIjoxN30.cEYbZGOMQ5GqGIdLzqsU7iKl5CrD_UoVWXGhvKheRzs",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "Kucing",
+							"type": "text"
+						},
+						{
+							"key": "caption",
+							"value": "Kucing Oren",
+							"type": "text"
+						},
+						{
+							"key": "photo_url",
+							"value": "https://asset.kompas.com/crops/SV5q4gPkeD8YJTuzO31BqTr9DEI=/192x128:1728x1152/750x500/data/photo/2021/03/06/60436a28b258b.jpg",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/photos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"photos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Photo",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXI4QGdtYWlsLmNvbSIsImlkIjo4fQ.3BAs014aeer3Ba9DR0x7na_DzJSEZfCwR5YXB2ygg3w",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "Tanaman rumah",
+							"type": "text"
+						},
+						{
+							"key": "caption",
+							"value": "tanaman hijau rumahan pot",
+							"type": "text"
+						},
+						{
+							"key": "photo_url",
+							"value": "https://f1-styx.imgix.net/article/2017/10/22201656/aneka-tanaman-hias-daun-min.jpg?fit=948%2C632&ssl=1&auto=format%2Ccompress&ixlib=react-9.0.1&h=480&w=1200&q=75&dpr=1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/photos/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"photos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Photo",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXI4QGdtYWlsLmNvbSIsImlkIjo4fQ.3BAs014aeer3Ba9DR0x7na_DzJSEZfCwR5YXB2ygg3w",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "Tanaman",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "caption",
+							"value": "tanaman hijau",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "photo_url",
+							"value": "https://f1-styx.imgix.net/article/2017/10/22201656/aneka-tanaman-hias-daun-min.jpg?fit=948%2C632&ssl=1&auto=format%2Ccompress&ixlib=react-9.0.1&h=480&w=1200&q=75&dpr=1",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/photos/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"photos",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Sosmed",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIwQGdtYWlsLmNvbSIsImlkIjoxN30.cEYbZGOMQ5GqGIdLzqsU7iKl5CrD_UoVWXGhvKheRzs",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/socialmedias",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"socialmedias"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Sosmed",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXI4QGdtYWlsLmNvbSIsImlkIjo4fQ.3BAs014aeer3Ba9DR0x7na_DzJSEZfCwR5YXB2ygg3w",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "sosial media user 8",
+							"type": "text"
+						},
+						{
+							"key": "social_media_url",
+							"value": "https://www.instagram.com/irfan.mmd0/",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/socialmedias/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"socialmedias",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update sosmed",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXI4QGdtYWlsLmNvbSIsImlkIjo4fQ.3BAs014aeer3Ba9DR0x7na_DzJSEZfCwR5YXB2ygg3w",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "sosmed 8",
+							"type": "text"
+						},
+						{
+							"key": "social_media_url",
+							"value": "https://www.instagram.com/irfan.mmd0/",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/socialmedias/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"socialmedias",
+						"3"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete sosmed",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJlbXBhdEBnbWFpbC5jb20iLCJpZCI6NH0.Ccatzam70mkrsbBgq7SWwxtNh-347rtk29E3hTwXf-o",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/socialmedias/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"socialmedias",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Comment",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIwQGdtYWlsLmNvbSIsImlkIjoxN30.cEYbZGOMQ5GqGIdLzqsU7iKl5CrD_UoVWXGhvKheRzs",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/comments",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Comment",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXI4QGdtYWlsLmNvbSIsImlkIjo4fQ.3BAs014aeer3Ba9DR0x7na_DzJSEZfCwR5YXB2ygg3w",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "message",
+							"value": "Tanamannya hijau bagus",
+							"type": "text"
+						},
+						{
+							"key": "photo_id",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/comments",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Comment",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXI4QGdtYWlsLmNvbSIsImlkIjo4fQ.3BAs014aeer3Ba9DR0x7na_DzJSEZfCwR5YXB2ygg3w",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "message",
+							"value": "Tanamannya hijau bagus",
+							"type": "text"
+						},
+						{
+							"key": "photo_id",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/comments",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Comment Copy",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXI4QGdtYWlsLmNvbSIsImlkIjo4fQ.3BAs014aeer3Ba9DR0x7na_DzJSEZfCwR5YXB2ygg3w",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "message",
+							"value": "Tanamannya hijau bagus",
+							"type": "text"
+						},
+						{
+							"key": "photo_id",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/comments",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"comments"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

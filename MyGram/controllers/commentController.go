@@ -112,6 +112,13 @@ func GetComment(c *gin.Context) {
 		})
 		return
 	}
+	if len(Comments) < 1 {
+		c.JSON(http.StatusNotFound, gin.H{
+			"Status":  "Failed",
+			"Message": "Data not found",
+		})
+		return
+	}
 	responses := []CommentGet{}
 	for i := 0; i < len(Comments); i++ {
 		temp := CommentGet{

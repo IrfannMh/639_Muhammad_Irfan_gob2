@@ -60,10 +60,10 @@ func CreateSosmed(c *gin.Context) {
 }
 func GetSosmed(c *gin.Context) {
 	db := config.GetDB()
-	Users := []models.User{}
+	Sosmed := []models.SocialMedia{}
 	responses := []SocialMediaGet{}
 
-	err := db.Preload("SocialMedia").Find(&Users).Error
+	err := db.Preload("User").Find(&Sosmed).Error
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"Status":  "Failed",
@@ -71,18 +71,24 @@ func GetSosmed(c *gin.Context) {
 		})
 		return
 	}
-
-	for i := 0; i < len(Users); i++ {
+	if len(Sosmed) < 1 {
+		c.JSON(http.StatusNotFound, gin.H{
+			"Status":  "Failed",
+			"Message": "Data not found",
+		})
+		return
+	}
+	for i := 0; i < len(Sosmed); i++ {
 		temp := SocialMediaGet{
-			ID:             Users[i].SocialMedia.ID,
-			Name:           Users[i].SocialMedia.Name,
-			SocialMediaURL: Users[i].SocialMedia.SocialMediaURL,
-			UserID:         Users[i].SocialMedia.UserID,
-			CreatedAt:      Users[i].SocialMedia.CreatedAt,
-			UpdatedAt:      Users[i].SocialMedia.UpdatedAt,
+			ID:             Sosmed[i].ID,
+			Name:           Sosmed[i].Name,
+			SocialMediaURL: Sosmed[i].SocialMediaURL,
+			UserID:         Sosmed[i].UserID,
+			CreatedAt:      Sosmed[i].CreatedAt,
+			UpdatedAt:      Sosmed[i].UpdatedAt,
 			User: UserSosmed{
-				ID:       Users[i].ID,
-				Username: Users[i].Username,
+				ID:       Sosmed[i].User.ID,
+				Username: Sosmed[i].User.Username,
 			},
 		}
 		responses = append(responses, temp)

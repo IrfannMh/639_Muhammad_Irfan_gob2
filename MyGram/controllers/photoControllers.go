@@ -109,6 +109,13 @@ func GetPhoto(c *gin.Context) {
 		})
 		return
 	}
+	if len(Photos) < 1 {
+		c.JSON(http.StatusNotFound, gin.H{
+			"Status":  "Failed",
+			"Message": "Data not found",
+		})
+		return
+	}
 	for i := 0; i < len(Photos); i++ {
 		temp := PhotoGet{
 			ID:        Photos[i].ID,

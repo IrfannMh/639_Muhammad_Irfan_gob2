@@ -1,6 +1,7 @@
 package models
 
 import (
+	"github.com/asaskevich/govalidator"
 	"gorm.io/gorm"
 )
 
@@ -10,6 +11,15 @@ type Photo struct {
 	Caption  string `json:"caption" form:"caption"`
 	PhotoURL string `gorm:"not null" json:"photo_url" form:"photo_url" valid:"required"`
 	UserID   uint
-	User     *User
-	Comment  []Comment
+	User     User `valid:"-"`
+}
+
+func (p *Photo) BeforeCreate(tx *gorm.DB) (err error) {
+	_, errCreate := govalidator.ValidateStruct(p)
+
+	if errCreate != nil {
+		err = errCreate
+		return
+	}
+	return
 }
