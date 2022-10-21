@@ -1,0 +1,26 @@
+Cara membuat aplikasi
+
+1. membuat folder mygram
+2. membuat file main.go
+3. go mod init mygram
+4. install library
+	- github.com/gin-gonic/gin
+	- gorm.io/driver/postgres
+	- gorm.io/gorm
+	- github.com/asaskevich/govalidator
+	- github.com/dgrijalva/jwt-go
+	- golang.org/x/crypto/bcrypt
+5. membuat database mygram
+6. membuat config db
+7. membuat models
+	- user
+	- photo
+	- social media
+	- comment
+8. membuat controller
+	- user
+	- photo
+	- social media
+	- comment
+9. membuat helpers (JWT, Bcrypt)
+10. membuat middleware(authentication, dan authorization)

@@ -94,7 +94,9 @@ func GetSosmed(c *gin.Context) {
 		responses = append(responses, temp)
 	}
 
-	c.JSON(http.StatusOK, responses)
+	c.JSON(http.StatusOK, gin.H{
+		"social medias": responses,
+	})
 }
 func UpdateSosmed(c *gin.Context) {
 	db := config.GetDB()
